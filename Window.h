@@ -12,7 +12,8 @@ public:
 	GLfloat getBufferWidth() { return bufferWidth; }
 	GLfloat getBufferHeight() { return bufferHeight; }
 	bool getShouldClose() {
-		return  glfwWindowShouldClose(mainWindow);}
+		return  glfwWindowShouldClose(mainWindow);
+	}
 	bool* getsKeys() { return keys; }
 	GLfloat getXChange();
 	GLfloat getYChange();
@@ -25,17 +26,14 @@ public:
 	GLfloat getarticulacion5() { return articulacion5; }
 	GLfloat getarticulacion6() { return articulacion6; }
 	GLfloat getarticulacion0() { return articulacion0; }
-
-
-
-
-
+	GLfloat getadelante_heli() { return adelante_heli; }
+	GLfloat getatras_heli() { return atras_heli; }
 
 	~Window();
-private: 
-	GLFWwindow *mainWindow;
+private:
+	GLFWwindow* mainWindow;
 	GLint width, height;
-	GLfloat rotaz,articulacion0, articulacion1, articulacion2, articulacion3, articulacion4, articulacion5, articulacion6;
+	GLfloat rotaz, articulacion0, articulacion1, articulacion2, articulacion3, articulacion4, articulacion5, articulacion6, adelante_heli, atras_heli;
 	bool keys[1024];
 	GLint bufferWidth, bufferHeight;
 	GLfloat lastX;

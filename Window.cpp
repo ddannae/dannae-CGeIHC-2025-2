@@ -20,10 +20,12 @@ Window::Window(GLint windowWidth, GLint windowHeight)
 	articulacion4 = 0.0f;
 	articulacion5 = 0.0f;
 	rotaz = 0.0f;
+	adelante_heli = 0.0f;
+	atras_heli = 0.0f;
 
 
 
-	
+
 	for (size_t i = 0; i < 1024; i++)
 	{
 		keys[i] = 0;
@@ -46,7 +48,7 @@ int Window::Initialise()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	//CREAR VENTANA
-	mainWindow = glfwCreateWindow(width, height, "Practica 05: OPTIMIZACION Y CARGA DE MODELOS - DANNAE SANCHEZ DURAN", NULL, NULL);
+	mainWindow = glfwCreateWindow(width, height, "Practica 07: ILUMINACION 01 - DANNAE SANCHEZ DURAN", NULL, NULL);
 
 	if (!mainWindow)
 	{
@@ -76,9 +78,9 @@ int Window::Initialise()
 	}
 
 	glEnable(GL_DEPTH_TEST); //HABILITAR BUFFER DE PROFUNDIDAD
-							 // Asignar valores de la ventana y coordenadas
-							 
-							 //Asignar Viewport
+	// Asignar valores de la ventana y coordenadas
+
+	//Asignar Viewport
 	glViewport(0, 0, bufferWidth, bufferHeight);
 	//Callback para detectar que se está usando la ventana
 	glfwSetWindowUserPointer(mainWindow, this);
@@ -112,12 +114,21 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 	{
 		glfwSetWindowShouldClose(window, GL_TRUE);
 	}
+	//MOVIMIENTO DEL HELICOPTERO
+	if (key == GLFW_KEY_N) //MUEVE EL HELICOPTERO HACIA ATRAS
+	{
+		theWindow->atras_heli -= 10.0;
+	}
+	if (key == GLFW_KEY_M) //MUEVE EL HELICOPTERO HACIA ADELANTE 
+	{
+		theWindow->adelante_heli += 10.0;
+	}
 	//----------- MOVIMIENTO DEL CARRO
 	if (key == GLFW_KEY_T) // MOVIENTO DEL CAPOTE
 	{
-		static bool incr4 = true; 
+		static bool incr4 = true;
 		if (incr4) {
-			if (theWindow->rotaz >- 90) {
+			if (theWindow->rotaz > -90) {
 				theWindow->rotaz -= 10.0;
 			}
 			else {
@@ -162,11 +173,11 @@ void Window::ManejaTeclado(GLFWwindow* window, int key, int code, int action, in
 	{
 		theWindow->articulacion5 += 10.0;
 
-		
+
 	}
-	
-	
-	
+
+
+
 
 	if (key == GLFW_KEY_D && action == GLFW_PRESS)
 	{
